@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int kBitFlips(vector<int>& arr, int k) {
+        int n = arr.size();
+        vector<int> isFlipped(n, 0); 
+        int flipCount = 0; 
+        int res = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i >= k) {
+                flipCount ^= isFlipped[i - k]; 
+            }
+            if ((arr[i] ^ flipCount) == 0) {
+                if (i + k > n) return -1; 
+                res++;
+                flipCount ^= 1;        
+                isFlipped[i] = 1;      
+            }
+        }
+        return res;
+    }
+};
