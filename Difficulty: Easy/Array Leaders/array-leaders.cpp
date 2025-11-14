@@ -1,14 +1,13 @@
 class Solution {
-  public:
+public:
     vector<int> leaders(vector<int>& arr) {
         int n = arr.size();
         vector<int> ans;
-        int maxRight = arr[n-1];
-        ans.push_back(maxRight);
-        for (int i = n-2; i >= 0; i--) {
-            if (arr[i] >= maxRight) {
-                maxRight = arr[i];
+        int mx = -1;
+        for (int i = n - 1; i >= 0; i--) {
+            if (arr[i] >= mx) {
                 ans.push_back(arr[i]);
+                mx = arr[i];
             }
         }
         reverse(ans.begin(), ans.end());
