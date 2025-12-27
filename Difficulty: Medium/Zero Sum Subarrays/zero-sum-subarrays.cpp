@@ -12,7 +12,7 @@ class Solution {
                 m[prefixsum]++;
             }
             else{
-                m[prefixsum]=1;
+                m[prefixsum]++;
             }
         }
         return total;
