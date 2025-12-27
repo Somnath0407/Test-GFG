@@ -1,19 +1,13 @@
 class Solution {
   public:
-    int kthSmallest(vector<vector<int>>& mat, int k) {
-        int n = mat.size();
-        int start = mat[0][0], end = mat[n-1][n-1];
-        
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-            int count = 0;
-            for (int i = 0; i < n; i++) {
-                count += upper_bound(mat[i].begin(), mat[i].end(), mid) - mat[i].begin();
+    int kthSmallest(vector<vector<int>> &mat, int k) {
+        vector<int> v;
+        for(int i = 0; i < mat.size(); i++){
+            for(int j = 0; j < mat[i].size(); j++){
+                v.push_back(mat[i][j]);
             }
-            if (count < k) start = mid + 1;
-            else end = mid;
         }
-        
-        return start;
+        sort(v.begin(), v.end());
+        return v[k-1];
     }
 };
