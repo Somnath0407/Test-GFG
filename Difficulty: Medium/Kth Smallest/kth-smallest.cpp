@@ -1,17 +1,17 @@
 class Solution {
   public:
     int kthSmallest(vector<int> &arr, int k) {
-        priority_queue<int> p;
-
-        for(int i = 0; i < arr.size(); i++) {
-            if(p.size() < k) {
-                p.push(arr[i]);
-            } else if(arr[i] < p.top()) {
-                p.pop();
-                p.push(arr[i]);
+        priority_queue<int>pq;
+        for(int i=0;i<k;i++){
+            pq.push(arr[i]);
+        }
+        for(int i=k;i<arr.size();i++){
+            if(pq.top()<=arr[i]) continue;
+            else {
+                pq.pop();
+                pq.push(arr[i]);
             }
         }
-
-        return p.top();
+        return pq.top();
     }
 };
